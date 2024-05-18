@@ -80,110 +80,113 @@
     <br>
     <h1>REGISTRAR TU VUELO</h1>
     <center><hr></center>
-    <div class="containerPrin">
 
-        <!--Primera Columna-->
+    <form id="form-reserv">
+        <div class="containerPrin">
 
-        <div class="containerP">
-            <label class="estilo" for="">Reserva ID: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="código" required>
-                <label for="floatingInput">Ingrese el código de la Reserva: </label>
-            </div>
-            <br>
-            <label class="estilo" for="">Nombre del Cliente: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="text" class="form-control"id="floatingInput" placeholder="Nombre" required>
-                <label for="floatingInput">Ingrese el Nombre: </label>
-            </div>
-            <br>
-            <label class="estilo" for="">Origen: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="text" class="form-control"id="floatingInput" placeholder="Origen" required>
-                <label for="floatingInput">¿De donde?</label>
-            </div>
-            <br>
-            <label class="estilo" for="">Destino: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="text" class="form-control"id="floatingInput" placeholder="Destino" required>
-                <label for="floatingInput">¿A donde?</label>
-            </div>
-            <br>
-            <label class="estilo" for="">Fecha de Salida: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="date" class="form-control"id="floatingInput" placeholder="FechaSal" required>
-                <label for="floatingInput">Ingrese la fecha de Salida: </label>
-            </div>
-        </div>
-
-        <!--Segunda Columna-->
+            <!--Primera Columna-->
     
-        <div class="containerP1">
-            <label class="estilo" for="">Fecha de regreso: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="date" class="form-control"id="floatingInput" placeholder="FechaRe" required>
-                <label for="floatingInput">Ingrese la Fecha de Regreso: </label>
+            <div class="containerP">
+                <label class="estilo" for="">Reserva ID: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="código" required>
+                    <label for="floatingInput">Ingrese el código de la Reserva: </label>
+                </div>
+                <br>
+                <label class="estilo" for="">Nombre del Cliente: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="text" class="form-control"id="floatingInput" placeholder="Nombre" required>
+                    <label for="floatingInput">Ingrese el Nombre: </label>
+                </div>
+                <br>
+                <label class="estilo" for="">Origen: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="text" class="form-control"id="floatingInput" placeholder="Origen" required>
+                    <label for="floatingInput">¿De donde?</label>
+                </div>
+                <br>
+                <label class="estilo" for="">Destino: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="text" class="form-control"id="floatingInput" placeholder="Destino" required>
+                    <label for="floatingInput">¿A donde?</label>
+                </div>
+                <br>
+                <label class="estilo" for="">Fecha de Salida: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="date" class="form-control"id="floatingInput" placeholder="FechaSal" required>
+                    <label for="floatingInput">Ingrese la fecha de Salida: </label>
+                </div>
             </div>
-            <br>
-            <label class="estilo" for="">Viajero: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="number" class="form-control"id="floatingInput" placeholder="Viajero" required>
-                <label for="floatingInput">Ingrese la cantidad de viajeros: </label>
-            </div>
-            <br>
-            <label class="estilo" for="">Clase de Servicio: </label>
-            <br>
-            <br>
-            <select class="form-select form-select-lg mb-3" aria-label="Large select example" required>
-                <option selected>-- SELECCIONE --</option>
-                <option value="1">ECONÓMICA</option>
-                <option value="2">ECONÓMICA PREMIUM</option>
-                <option value="3">EJECUTIVA</option>
-                <option value="4">PRIMERA CLASE</option>
-              </select>
-            <br>
-            <label for="">Estado de la reserva: </label>
-            <br>
-            <br>
-            <select class="form-select form-select-lg mb-3" aria-label="Large select example" required>
-                <option selected>-- SELECCIONE --</option>
-                <option value="1">CONFIRMADA</option>
-                <option value="2">PENDIENTE</option>
-                <option value="3">CANCELADA</option>
-              </select>
-            <br>
-            <label class="estilo" for="">Precio Total: </label>
-            <br>
-            <br>
-            <div class="form-floating">
-                <input type="text" class="form-control"id="floatingInput" placeholder="Precio" required>
-                <label for="floatingInput">El precio total es de: </label>
+    
+            <!--Segunda Columna-->
+        
+            <div class="containerP1">
+                <label class="estilo" for="">Fecha de regreso: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="date" class="form-control"id="floatingInput" placeholder="FechaRe" required>
+                    <label for="floatingInput">Ingrese la Fecha de Regreso: </label>
+                </div>
+                <br>
+                <label class="estilo" for="">Viajero: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="number" class="form-control"id="floatingInput" placeholder="Viajero" required>
+                    <label for="floatingInput">Ingrese la cantidad de viajeros: </label>
+                </div>
+                <br>
+                <label class="estilo" for="">Clase de Servicio: </label>
+                <br>
+                <br>
+                <select class="form-select form-select-lg mb-3" aria-label="Large select example" required>
+                    <option selected>-- SELECCIONE --</option>
+                    <option value="1">ECONÓMICA</option>
+                    <option value="2">ECONÓMICA PREMIUM</option>
+                    <option value="3">EJECUTIVA</option>
+                    <option value="4">PRIMERA CLASE</option>
+                  </select>
+                <br>
+                <label for="">Estado de la reserva: </label>
+                <br>
+                <br>
+                <select class="form-select form-select-lg mb-3" aria-label="Large select example" required>
+                    <option selected>-- SELECCIONE --</option>
+                    <option value="1">CONFIRMADA</option>
+                    <option value="2">PENDIENTE</option>
+                    <option value="3">CANCELADA</option>
+                  </select>
+                <br>
+                <label class="estilo" for="">Precio Total: </label>
+                <br>
+                <br>
+                <div class="form-floating">
+                    <input type="text" class="form-control"id="floatingInput" placeholder="Precio" required>
+                    <label for="floatingInput">El precio total es de: </label>
+                </div>
             </div>
         </div>
-    </div>
-    <center>
-        <div class="containerP2">
-            <button type="submit" class="btn btn-outline-success"><b>GUARDAR</b></button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-outline-danger"><b>ELIMINAR</b></button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button>
-        </div>
-    </center>
+        <center>
+            <div class="containerP2">
+                <button type="submit" class="btn btn-outline-success"><b>GUARDAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-outline-danger"><b>ELIMINAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button>
+            </div>
+        </center>
+    </form>
     <br>
 
     <!--Script (Programación)-->
@@ -214,25 +217,25 @@
         // Ingreso de Datos
 
         //Variable constante
-        const productform = document.getElementById("form-product");
-        productform.addEventListener("submit",async(e)=>{
+        const reservform = document.getElementById("form-reserv");
+        reservform.addEventListener("submit",async(e)=>{
             e.preventDefault();
             await addDoc(collection(db,"reserva_vuelo"),{
-                Destino: productform.Destino.value,
-                Estado: productform.Estado.value,
-                FechaRe: productform.FechaRe.value,
-                FehaSal: productform.FechaSal.value,
-                Nombre: productform.Nombre.value,
-                Origen: productform.Origen.value,
-                Precio: productform.Precio.value,
-                Servicio: productform.Servicio.value,
-                Viajero: productform.Viajero.value,
-                código: productform.código.value
+                Destino: reservform.Destino.value,
+                Estado: reservform.Estado.value,
+                FechaRe: reservform.FechaRe.value,
+                FehaSal: reservform.FechaSal.value,
+                Nombre: reservform.Nombre.value,
+                Origen: reservform.Origen.value,
+                Precio: reservform.Precio.value,
+                Servicio: reservform.Servicio.value,
+                Viajero: reservform.Viajero.value,
+                código: reservform.código.value
             });
     
             //Limpiar campos
     
-            productform.reset();
+            reservform.reset();
         });
 
       </script>
