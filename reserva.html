@@ -123,7 +123,7 @@
                 <br>
                 <br>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="fechaSal" placeholder="FechaSal" required>
+                    <input type="date" class="form-control" id="fechaSal" placeholder="FechaSal" required>
                     <label for="floatingInput">Ingrese la fecha de Salida: </label>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                 <br>
                 <br>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="fechaRe" placeholder="FechaRe" required>
+                    <input type="date" class="form-control" id="fechaRe" placeholder="FechaRe" required>
                     <label for="floatingInput">Ingrese la Fecha de Regreso: </label>
                 </div>
                 <br>
@@ -172,7 +172,7 @@
                 <br>
                 <br>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="Precio" placeholder="precio" required>
+                    <input type="text" class="form-control" id="precio" placeholder="Precio" required>
                     <label for="floatingInput">El precio total es de: </label>
                 </div>
             </div>
@@ -221,7 +221,7 @@
         reservform.addEventListener("submit",async(e)=>{
             e.preventDefault();
             await addDoc(collection(db,"reserva_vuelo"),{
-                codigo: reservform.código.value,
+                codigo: reservform.codigo.value,
                 nombre: reservform.nombre.value,
                 origen: reservform.origen.value,
                 destino: reservform.destino.value,
@@ -229,8 +229,8 @@
                 fechaRe: reservform.fechaRe.value,
                 viajero: reservform.viajero.value,
                 servicio: reservform.servicio.value,
-                Estado: reservform.Estado.value,
-                Precio: reservform.Precio.value
+                estado: reservform.estado.value,
+                precio: reservform.precio.value
             });
     
             //Limpiar campos
