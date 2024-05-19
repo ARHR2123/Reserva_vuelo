@@ -93,6 +93,7 @@
                 <div class="form-floating">
                     <input type="text" class="form-control" id="codigo" placeholder="código" required>
                     <label for="floatingInput">Ingrese el código de la Reserva: </label>
+                    <br>
                 </div>
                 <br>
                 <label class="estilo" for="">Nombre del Cliente: </label>
@@ -150,23 +151,18 @@
                 <label class="estilo" for="">Clase de Servicio: </label>
                 <br>
                 <br>
-                <select class="form-select form-select-lg mb-3" aria-label="Large select example" id="servicio" required>
-                    <option selected>-- SELECCIONE --</option>
-                    <option value="1">ECONÓMICA</option>
-                    <option value="2">ECONÓMICA PREMIUM</option>
-                    <option value="3">EJECUTIVA</option>
-                    <option value="4">PRIMERA CLASE</option>
-                  </select>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="servicio" placeholder="servicio" required>
+                    <label for="floatingInput">Económica - Económica Premium - Ejecutiva - Primera Clase </label>
+                </div>
                 <br>
-                <label for="">Estado de la reserva: </label>
+                <label class="estilo" for="">Estado de la reserva: </label>
                 <br>
                 <br>
-                <select class="form-select form-select-lg mb-3" aria-label="Large select example" id="estado" required>
-                    <option selected>-- SELECCIONE --</option>
-                    <option value="1">CONFIRMADA</option>
-                    <option value="2">PENDIENTE</option>
-                    <option value="3">CANCELADA</option>
-                  </select>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="estado" placeholder="estado" required>
+                    <label for="floatingInput">Confirmada - Pendiente - Cancelada </label>
+                </div>
                 <br>
                 <label class="estilo" for="">Precio Total: </label>
                 <br>
@@ -179,11 +175,19 @@
         </div>
         <center>
             <div class="containerP2">
-                <button type="submit" class="btn btn-outline-success"><b>GUARDAR</b></button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-outline-danger"><b>ELIMINAR</b></button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button>
+                <button type="submit" class="btn btn-outline-success" id="boton"><b>GUARDAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-outline-info" id="btn-buscar"><b>BUSCAR</b></button>
+                <br><br>
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="Buscarcod" id="Buscarcod" placeholder="codigores">
+                    <label for="floatingInput">Ingrese el código de reserva a buscar: </label>
+                </div>
+                <br>
+                <td><button type="button" class="btn btn-outline-danger" id="btn-eliminar" ><b>ELIMINAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <td><button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button></td>
+
             </div>
         </center>
         <br>
@@ -205,6 +209,7 @@
               </tr>
             </thead>
             <tbody id="tabla">
+
             </tbody>
         </table>
 
@@ -216,7 +221,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc,getDocs,query} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc,getDocs,query, updateDoc, where} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -236,9 +241,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        let currentEditId = null;
+
         // Ingreso de Datos
 
         //Variable constante
+
         const reservform = document.getElementById("form-reserv");
         reservform.addEventListener("submit",async(e)=>{
             e.preventDefault();
@@ -271,23 +279,125 @@
             console.log(`${doc.id} => ${doc.data().codigo}`);
                 tabla.innerHTML += `
                 <tr>
-                <td>${doc.data().codigo}</td>
-                <td>${doc.data().destino}</td>
-                <td>${doc.data().estado}</td>
-                <td>${doc.data().fechaRe}</td>
-                <td>${doc.data().fehaSal}</td>
-                <td>${doc.data().nombre}</td>
-                <td>${doc.data().origen}</td>
-                <td>${doc.data().precio}</td>
-                <td>${doc.data().servicio}</td>
-                <td>${doc.data().viajero}</td>
+                    <td>${doc.data().codigo}</td>
+                    <td>${doc.data().nombre}</td>
+                    <td>${doc.data().origen}</td>
+                    <td>${doc.data().destino}</td>
+                    <td>${doc.data().fehaSal}</td>
+                    <td>${doc.data().fechaRe}</td>
+                    <td>${doc.data().viajero}</td>
+                    <td>${doc.data().servicio}</td>
+                    <td>${doc.data().estado}</td>
+                    <td>${doc.data().precio}</td>
                 </tr>
                 `
-
             });
-
-
         });
+
+        // Buscar
+
+        const btnBu = document.getElementById("btn-buscar");
+        btnBu.addEventListener("click", () => {
+            const codigorev = document.getElementById("Buscarcod").value;
+            const tablaReserva = document.getElementById('tabla');
+            const rows = tablaReserva.getElementsByTagName("tr");
+            let reservaencontrada = false;
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                const codigoReserva  = cells[0].innerText;
+
+                if (codigoReserva === codigorev) {
+                    document.getElementById("codigo").value = cells[0].innerText;
+                    document.getElementById("nombre").value = cells[1].innerText;
+                    document.getElementById("origen").value = cells[2].innerText;
+                    document.getElementById("destino").value = cells[3].innerText;
+                    document.getElementById("fechaSal").value = cells[4].innerText;
+                    document.getElementById("fechaRe").value = cells[5].innerText;
+                    document.getElementById("viajero").value = cells[6].innerText;
+                    document.getElementById("servicio").value = cells[7].innerText;
+                    document.getElementById("estado").value = cells[8].innerText;
+                    document.getElementById("precio").value = cells[9].innerText;
+
+                    reservaencontrada = true;
+                    break;
+                }
+            }
+
+            if (!reservaencontrada) {
+                alert("No existe ningunba reserva con ese nombre");
+            }
+        });
+
+
+
+        // Borrar Datos
+
+        const elibtn = document.getElementById("btn-eliminar");
+        elibtn.addEventListener("click", async () => {
+            const codigobor = document.getElementById("codigo").value;
+            const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigobor));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(async (docSnap) => {
+                await deleteDoc(doc(db, "reserva_vuelo", docSnap.id));
+            });
+            reservform.reset();
+        });
+
+        // Editar Documentos
+
+        function editar(cod,dest,est,feR,feS,nom,orig,prec,serv,viaj){
+            document.getElementById('codigo').value = cod;
+            document.getElementById('nombre').value = nom;
+            document.getElementById('origen').value = orig;
+            document.getElementById('destino').value = dest;
+            document.getElementById('fehaSal').value = feS;
+            document.getElementById('fechaRe').value = feR;
+            document.getElementById('viajero').value = viaj;
+            document.getElementById('servicio').value = serv;
+            document.getElementById('estado').value = est;
+            document.getElementById('precio').value = prec;
+            var boton = document.getElementById('boton');
+            boton.innerHTML = 'MODIFICAR';
+            boton.onclick = function(){
+                var washingtonRef = db.collection("reserva_vuelo").doc(id);
+                var codigo = document.getElementById('codigo').value;
+                var nombre = document.getElementById('nombre').value;
+                var origen = document.getElementById('origen').value;
+                var destino = document.getElementById('destino').value;
+                var fechaSal = document.getElementById('fehaSal').value;
+                var fechaRe = document.getElementById('fechaRe').value;
+                var viajero = document.getElementById('viajero').value;
+                var servicio = document.getElementById('servicio').value;
+                var estado = document.getElementById('estado').value;
+                var precio = document.getElementById('precio').value;
+                
+                return washingtonRef.update({
+                    codigo: reservform.codigo.value,
+                    nombre: reservform.nombre.value,
+                    origen: reservform.origen.value,
+                    destino: reservform.destino.value,
+                    fehaSal: reservform.fechaSal.value,
+                    fechaRe: reservform.fechaRe.value,
+                    viajero: reservform.viajero.value,
+                    servicio: reservform.servicio.value,
+                    estado: reservform.estado.value,
+                    precio: reservform.precio.value
+                })
+                .then(() => {
+                    console.log("Document successfully updated!");
+                    boton.innerHTML = 'GUARDAR';
+                })
+                .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });              
+            
+            }
+
+        }
+        // Set the "capital" field of the city 'DC'
+        
         
     </script>
 
