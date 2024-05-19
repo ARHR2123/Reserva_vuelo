@@ -177,6 +177,16 @@
                 </div>
             </div>
         </div>
+        <center>
+            <div class="containerP2">
+                <button type="submit" class="btn btn-outline-success"><b>GUARDAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-outline-danger"><b>ELIMINAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button>
+            </div>
+        </center>
+        <br>
         <br>
         <br>
         <table class="table">
@@ -197,17 +207,7 @@
             <tbody id="tabla">
             </tbody>
         </table>
-        <br>
-        <center>
-            <div class="containerP2">
-                <button type="submit" class="btn btn-outline-success"><b>GUARDAR</b></button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-outline-danger"><b>ELIMINAR</b></button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button>
-            </div>
-        </center>
-        
+
     </form>
     <br>
 
@@ -216,7 +216,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc,getDocs,query} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -260,31 +260,36 @@
             reservform.reset();
         });
 
-        // Leer Datos
+        // Visualizar Tabla
+
         var tabla = document.getElementById('tabla');
-        db.collection("reserva_vuelo").onSnapshot((querySnapshot) => {
+
+        const q = query(collection(db, "reserva_vuelo"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
             tabla.innerHTML = '';
             querySnapshot.forEach((doc) => {
-                console.log(`${doc.id} => ${doc.data().codigo}`);
+            console.log(`${doc.id} => ${doc.data().codigo}`);
                 tabla.innerHTML += `
                 <tr>
-                <th scope="row">${doc.id}</th>
                 <td>${doc.data().codigo}</td>
+                <td>${doc.data().destino}</td>
+                <td>${doc.data().estado}</td>
+                <td>${doc.data().fechaRe}</td>
+                <td>${doc.data().fehaSal}</td>
                 <td>${doc.data().nombre}</td>
                 <td>${doc.data().origen}</td>
-                <td>${doc.data().destino}</td>
-                <td>${doc.data().fechaSal}</td>
-                <td>${doc.data().fechaRe}</td>
-                <td>${doc.data().viajero}</td>
-                <td>${doc.data().servicio}</td>
-                <td>${doc.data().estado}</td>
                 <td>${doc.data().precio}</td>
+                <td>${doc.data().servicio}</td>
+                <td>${doc.data().viajero}</td>
                 </tr>
                 `
-            });
-        });
 
-      </script>
+            });
+
+
+        });
+        
+    </script>
 
 
 
