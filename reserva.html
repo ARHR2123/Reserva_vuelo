@@ -177,6 +177,27 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">codigo</th>
+                <th scope="col">nombre</th>
+                <th scope="col">origen</th>
+                <th scope="col">destino</th>
+                <th scope="col">fehaSal</th>
+                <th scope="col">fechaRe</th>
+                <th scope="col">viajero</th>
+                <th scope="col">servicio</th>
+                <th scope="col">estado</th>
+                <th scope="col">precio</th>
+              </tr>
+            </thead>
+            <tbody id="tabla">
+            </tbody>
+        </table>
+        <br>
         <center>
             <div class="containerP2">
                 <button type="submit" class="btn btn-outline-success"><b>GUARDAR</b></button>
@@ -186,6 +207,7 @@
                 <button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button>
             </div>
         </center>
+        
     </form>
     <br>
 
@@ -236,6 +258,30 @@
             //Limpiar campos
     
             reservform.reset();
+        });
+
+        // Leer Datos
+        var tabla = document.getElementById('tabla');
+        db.collection("reserva_vuelo").onSnapshot((querySnapshot) => {
+            tabla.innerHTML = '';
+            querySnapshot.forEach((doc) => {
+                console.log(`${doc.id} => ${doc.data().codigo}`);
+                tabla.innerHTML += `
+                <tr>
+                <th scope="row">${doc.id}</th>
+                <td>${doc.data().codigo}</td>
+                <td>${doc.data().nombre}</td>
+                <td>${doc.data().origen}</td>
+                <td>${doc.data().destino}</td>
+                <td>${doc.data().fechaSal}</td>
+                <td>${doc.data().fechaRe}</td>
+                <td>${doc.data().viajero}</td>
+                <td>${doc.data().servicio}</td>
+                <td>${doc.data().estado}</td>
+                <td>${doc.data().precio}</td>
+                </tr>
+                `
+            });
         });
 
       </script>
