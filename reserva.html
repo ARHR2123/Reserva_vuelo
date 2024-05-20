@@ -181,11 +181,10 @@
         <br><br>
         <center>
             <button type="submit" class="btn btn-outline-success" id="boton"><b>GUARDAR</b></button>
-            <br>
-            <br>
+            <!--
             <button type="button" class="btn btn-outline-danger" id="btn-eliminar" ><b>ELIMINAR</b></button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-outline-warning" id="btn-modificar"><b>MODIFICAR</b></button>
+            <button type="button" class="btn btn-outline-warning" id="btn-modificar"><b>MODIFICAR</b></button>-->
         </center>
         <br>
         <br>
@@ -320,6 +319,9 @@
                     <td>${doc.data().servicio}</td>
                     <td>${doc.data().estado}</td>
                     <td>${doc.data().precio}</td>
+                    <td><button type="button" class="btn btn-outline-danger" id="btn-eliminar" ><b>ELIMINAR</b></button></td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <td><button type="button" class="btn btn-outline-warning" id="btn-modificar"><b>MODIFICAR</b></button></td>
                 </tr>
                 `
             });
