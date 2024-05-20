@@ -174,44 +174,50 @@
             </div>
         </div>
         <center>
-            <div class="containerP2">
-                <button type="submit" class="btn btn-outline-success" id="boton"><b>GUARDAR</b></button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-outline-info" id="btn-buscar"><b>BUSCAR</b></button>
-                <br><br>
-                <div class="form-floating">
-                    <input type="text" class="form-control" name="Buscarcod" id="Buscarcod" placeholder="codigores">
-                    <label for="floatingInput">Ingrese el código de reserva a buscar: </label>
-                </div>
-                <br>
-                <td><button type="button" class="btn btn-outline-danger" id="btn-eliminar" ><b>ELIMINAR</b></button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <td><button type="button" class="btn btn-outline-warning" id="btn-modificar"><b>MODIFICAR</b></button></td>
-
-            </div>
+            <button type="submit" class="btn btn-outline-success" id="boton"><b>GUARDAR</b></button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-outline-danger" id="btn-eliminar" ><b>ELIMINAR</b></button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-warning" id="btn-modificar"><b>MODIFICAR</b></button>
         </center>
         <br>
         <br>
         <br>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">codigo</th>
-                <th scope="col">nombre</th>
-                <th scope="col">origen</th>
-                <th scope="col">destino</th>
-                <th scope="col">fehaSal</th>
-                <th scope="col">fechaRe</th>
-                <th scope="col">viajero</th>
-                <th scope="col">servicio</th>
-                <th scope="col">estado</th>
-                <th scope="col">precio</th>
-              </tr>
-            </thead>
-            <tbody id="tabla">
-
-            </tbody>
-        </table>
+        <center>
+            <h1>
+                REISTROS
+            </h1>
+            <br>
+            <div class="containerP2">
+                <button type="button" class="btn btn-outline-info" id="btn-buscar"><b>BUSCAR</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-floating" style="width: 60%;">
+                    <input type="text" class="form-control" name="Buscarcod" id="Buscarcod" placeholder="codigores">
+                    <label for="floatingInput">Ingrese el código de reserva: </label>
+                </div>
+                <br>
+            </div>
+            <br><br>
+            <table class="table table-hover table-bordered border-info" style="width: 90%;">
+                <thead>
+                  <tr>
+                    <th scope="col">codigo</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">origen</th>
+                    <th scope="col">destino</th>
+                    <th scope="col">fehaSal</th>
+                    <th scope="col">fechaRe</th>
+                    <th scope="col">viajero</th>
+                    <th scope="col">servicio</th>
+                    <th scope="col">estado</th>
+                    <th scope="col">precio</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla">
+                </tbody>
+            </table>
+        </center>
 
     </form>
     <br>
@@ -322,6 +328,7 @@
                     reservaencontrada = true;
                     break;
                 }
+                reservform.reset();
             }
 
             if (!reservaencontrada) {
