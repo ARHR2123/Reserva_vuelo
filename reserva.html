@@ -92,7 +92,7 @@
                 <br>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="codigo" placeholder="código" required>
-                    <label for="floatingInput">Ingrese el código de la Reserva: </label>
+                    <label for="floatingInput">Ingrese el código de la Reserva (Ej. resv001): </label>
                     <br>
                 </div>
                 <br>
@@ -168,7 +168,7 @@
                 <br>
                 <br>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="precio" placeholder="Precio" required>
+                    <input type="number" class="form-control" id="precio" placeholder="Precio" required>
                     <label for="floatingInput">El precio total es de: </label>
                 </div>
             </div>
@@ -186,7 +186,7 @@
                 <br>
                 <td><button type="button" class="btn btn-outline-danger" id="btn-eliminar" ><b>ELIMINAR</b></button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <td><button type="button" class="btn btn-outline-warning"><b>MODIFICAR</b></button></td>
+                <td><button type="button" class="btn btn-outline-warning" id="btn-modificar"><b>MODIFICAR</b></button></td>
 
             </div>
         </center>
@@ -344,59 +344,30 @@
             reservform.reset();
         });
 
-        // Editar Documentos
+        // Editar Datos
 
-        function editar(cod,dest,est,feR,feS,nom,orig,prec,serv,viaj){
-            document.getElementById('codigo').value = cod;
-            document.getElementById('nombre').value = nom;
-            document.getElementById('origen').value = orig;
-            document.getElementById('destino').value = dest;
-            document.getElementById('fehaSal').value = feS;
-            document.getElementById('fechaRe').value = feR;
-            document.getElementById('viajero').value = viaj;
-            document.getElementById('servicio').value = serv;
-            document.getElementById('estado').value = est;
-            document.getElementById('precio').value = prec;
-            var boton = document.getElementById('boton');
-            boton.innerHTML = 'MODIFICAR';
-            boton.onclick = function(){
-                var washingtonRef = db.collection("reserva_vuelo").doc(id);
-                var codigo = document.getElementById('codigo').value;
-                var nombre = document.getElementById('nombre').value;
-                var origen = document.getElementById('origen').value;
-                var destino = document.getElementById('destino').value;
-                var fechaSal = document.getElementById('fehaSal').value;
-                var fechaRe = document.getElementById('fechaRe').value;
-                var viajero = document.getElementById('viajero').value;
-                var servicio = document.getElementById('servicio').value;
-                var estado = document.getElementById('estado').value;
-                var precio = document.getElementById('precio').value;
-                
-                return washingtonRef.update({
-                    codigo: reservform.codigo.value,
-                    nombre: reservform.nombre.value,
-                    origen: reservform.origen.value,
-                    destino: reservform.destino.value,
-                    fehaSal: reservform.fechaSal.value,
-                    fechaRe: reservform.fechaRe.value,
-                    viajero: reservform.viajero.value,
-                    servicio: reservform.servicio.value,
-                    estado: reservform.estado.value,
-                    precio: reservform.precio.value
-                })
-                .then(() => {
-                    console.log("Document successfully updated!");
-                    boton.innerHTML = 'GUARDAR';
-                })
-                .catch((error) => {
-                    // The document probably doesn't exist.
-                    console.error("Error updating document: ", error);
-                });              
-            
-            }
-
-        }
-        // Set the "capital" field of the city 'DC'
+        const editarbtn = document.getElementById("btn-modificar");
+        editarbtn.addEventListener("click", async () => {
+            const codigomod = document.getElementById("codigo").value;
+            const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigomod));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(async (docSnap) => {
+                const docRef = doc(db, "reserva_vuelo", docSnap.id);
+                await updateDoc(docRef, {
+                    codigo : document.getElementById('codigo').value,
+                    nombre : document.getElementById('nombre').value,
+                    origen : document.getElementById('origen').value,
+                    destino : document.getElementById('destino').value,
+                    fechaSal : document.getElementById('fehaSal').value,
+                    fechaRe : document.getElementById('fechaRe').value,
+                    viajero : document.getElementById('viajero').value,
+                    servicio : document.getElementById('servicio').value,
+                    estado : document.getElementById('estado').value,
+                    precio : document.getElementById('precio').value
+                });
+                reservform.reset();
+            });
+        });
         
         
     </script>
