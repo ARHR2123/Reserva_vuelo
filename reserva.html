@@ -28,6 +28,7 @@
     }
     .containerP2{
         width: 30%;
+        display: flex;
     }
     hr{
         background-color: black;
@@ -183,6 +184,7 @@
         </center>
         <br>
         <br>
+        <center><hr></center>
         <br>
         <center>
             <h1>
@@ -218,6 +220,8 @@
                 </tbody>
             </table>
         </center>
+        <br>
+        <center><hr></center>
 
     </form>
     <br>
@@ -256,6 +260,14 @@
         const reservform = document.getElementById("form-reserv");
         reservform.addEventListener("submit",async(e)=>{
             e.preventDefault();
+
+            const codigovef = reservform.codigo.value;
+            const registroguardado = await verificarcod(codigovef);
+            if (registroguardado) {
+                alert(" *** El código de reserva que quiere ingresar ya existe, ingrese otro distinto por favor. *** ");
+                return;
+            }
+
             await addDoc(collection(db,"reserva_vuelo"),{
                 codigo: reservform.codigo.value,
                 nombre: reservform.nombre.value,
@@ -273,6 +285,14 @@
     
             reservform.reset();
         });
+
+        // Validacion de Codigo
+
+        async function verificarcod(codigovef) {
+            const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigovef));
+            const querySnapshot = await getDocs(q);
+            return !querySnapshot.empty;
+        }
 
         // Visualizar Tabla
 
