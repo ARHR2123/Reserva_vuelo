@@ -39,7 +39,7 @@ login.addEventListener('submit', (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            window.location.href = "Reserva.html";
+            window.location.href = "reserva.html";
             alert("** Acceso Correcto **")
             //Limpiar el formulario
             login.reset()

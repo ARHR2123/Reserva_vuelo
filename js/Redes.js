@@ -33,7 +33,7 @@ google.addEventListener('click', e => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
         .then((result) => {
-            window.location.href = "Reserva.html";
+            window.location.href = "reserva.html";
             alert("** La vinculación con su cuenta de Google ha sido Correcta **")
         })
         .catch((error) => {
@@ -53,7 +53,7 @@ facebook.addEventListener('click', e => {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
         .then((result) => {
-            window.location.href = "Reserva.html";
+            window.location.href = "reserva.html";
             alert("** La vinculación con su cuenta de Facebook ha sido Correcta **")
             // The signed-in user info.
             const user = result.user;
@@ -82,7 +82,7 @@ Micro.addEventListener('click', e => {
     const auth = getAuth();
     signInWithPopup(auth, provider)
         .then((result) => {
-            window.location.href = "Reserva.html";
+            window.location.href = "reserva.html";
             alert("** La vinculación con su cuenta de Microsoft ha sido Correcta **")
         })
         .catch((error) => {
@@ -98,7 +98,7 @@ github.addEventListener('click', e => {
     const auth = getAuth();
     signInWithPopup(auth, provider)
         .then((result) => {
-            window.location.href = "Reserva.html";
+            window.location.href = "reserva.html";
             alert("** La vinculación con su cuenta de GitHub ha sido Correcta **")
         })
         .catch((error) => {
