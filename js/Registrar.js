@@ -46,7 +46,7 @@ crear.addEventListener('submit', (e) => {
     createUserWithEmailAndPassword(auth, sesionemail, sesionpassword)
         .then((userCredential) => {
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
                 title: "** Su Cuenta se a Creado Exitosamente ** ",
                 showConfirmButton: false,
@@ -54,7 +54,7 @@ crear.addEventListener('submit', (e) => {
             });
 
             //Verificación del correo
-            
+
             sendEmailVerification(auth.currentUser).then(() => {
                 Swal.fire({
                     icon: "success",

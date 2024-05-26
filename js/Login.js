@@ -39,8 +39,15 @@ login.addEventListener('submit', (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "** Acceso Correcto **",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
             window.location.href = "reserva.html";
-            alert("** Acceso Correcto **")
             //Limpiar el formulario
             login.reset()
 
@@ -48,14 +55,24 @@ login.addEventListener('submit', (e) => {
         .catch((error) => {
             const errorCode = error.code;
             if (errorCode == 'auth/invalid-email') {
-                alert('** El correo no es válido, ingrese nuevamente **');
+                Swal.fire({
+                    icon: "error",
+                    title: '** El correo no es válido **',
+                    text: "Ingrese nuevamente! ",
+                });
             }
             else if (errorCode == 'auth/weak-password') {
-                alert('** La contraseña debe tener almenos 6 dígitos **');
+                Swal.fire({
+                    icon: "warning",
+                    title: '** La contraseña debe tener almenos 6 dígitos **'
+                });
             }
             else {
-                alert('** Su cuenta no existe. REGÍSTRESE **')
-
+                Swal.fire({
+                    icon: "error",
+                    title: '** Su cuenta no existe. REGÍSTRESE **',
+                    footer: '<a href="#" data-bs-toggle="modal" data-bs-target="#crearusumodal">Desea Registrarse?</a>'
+                });
             }
             login.reset();
         });
