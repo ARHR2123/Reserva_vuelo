@@ -42,7 +42,10 @@ google.addEventListener('click', e => {
             const errorMessage = error.message;
             const email = error.customData.email;
             const credential = GoogleAuthProvider.credentialFromError(error);
-            alert("** No se pudo vincular con su cuenta Google **")
+            Swal.fire({
+                icon: "error",
+                title: "** No se pudo vincular con su cuenta Google **"
+            });
         });
 });
 
@@ -61,16 +64,16 @@ facebook.addEventListener('click', e => {
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             const credential = FacebookAuthProvider.credentialFromResult(result);
             const accessToken = credential.accessToken;
-
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             const email = error.customData.email;
             const credential = FacebookAuthProvider.credentialFromError(error);
-            alert("** No se pudo vincular con su cuenta de Facebook **")
+            Swal.fire({
+                icon: "error",
+                title: "** No se pudo vincular con su cuenta de Facebook **"
+            });
         });
 });
 
@@ -86,7 +89,10 @@ Micro.addEventListener('click', e => {
             alert("** La vinculación con su cuenta de Microsoft ha sido Correcta **")
         })
         .catch((error) => {
-            alert("*** No se pudo vincular con su cuenta de Microsoft *** ")
+            Swal.fire({
+                icon: "error",
+                title: "*** No se pudo vincular con su cuenta de Microsoft *** "
+            });
         });
 });
 
@@ -102,6 +108,9 @@ github.addEventListener('click', e => {
             alert("** La vinculación con su cuenta de GitHub ha sido Correcta **")
         })
         .catch((error) => {
-            alert("*** No se pudo vincular con su cuenta de Microsoft *** ")
+            Swal.fire({
+                icon: "error",
+                title: "*** No se pudo vincular con su cuenta de GitHub *** "
+            });
         });
 });
