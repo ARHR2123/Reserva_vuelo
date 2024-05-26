@@ -26,23 +26,32 @@ const db = getFirestore(app);
 var tabla = document.getElementById('tabla');
 
 const q = query(collection(db, "reserva_vuelo"));
-const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    tabla.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().codigo}`);
-        tabla.innerHTML += `
-        <tr>
-            <td>${doc.data().codigo}</td>
-            <td>${doc.data().nombre}</td>
-            <td>${doc.data().origen}</td>
-            <td>${doc.data().destino}</td>
-            <td>${doc.data().fehaSal}</td>
-            <td>${doc.data().fechaRe}</td>
-            <td>${doc.data().viajero}</td>
-            <td>${doc.data().servicio}</td>
-            <td>${doc.data().estado}</td>
-            <td>${doc.data().precio}</td>
-        </tr>
-        `
+
+try {
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        tabla.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data().codigo}`);
+            tabla.innerHTML += `
+            <tr>
+                <td>${doc.data().codigo}</td>
+                <td>${doc.data().nombre}</td>
+                <td>${doc.data().origen}</td>
+                <td>${doc.data().destino}</td>
+                <td>${doc.data().fehaSal}</td>
+                <td>${doc.data().fechaRe}</td>
+                <td>${doc.data().viajero}</td>
+                <td>${doc.data().servicio}</td>
+                <td>${doc.data().estado}</td>
+                <td>${doc.data().precio}</td>
+            </tr>
+            `
+        });
     });
-});
+    
+} catch (error) {
+    Swal.fire({
+        icon: "error",
+        title: " *** Se ha producido un error al momento de visualizar el registro *** "
+    });
+}

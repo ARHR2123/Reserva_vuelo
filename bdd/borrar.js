@@ -24,12 +24,27 @@ const db = getFirestore(app);
 // Borrar Datos
 const reservform = document.getElementById("form-reserv");
 const elibtn = document.getElementById("btn-eliminar");
-elibtn.addEventListener("click", async () => {
-    const codigobor = document.getElementById("codigo").value;
-    const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigobor));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(async (docSnap) => {
-        await deleteDoc(doc(db, "reserva_vuelo", docSnap.id));
+try {
+    elibtn.addEventListener("click", async () => {
+        const codigobor = document.getElementById("codigo").value;
+        const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigobor));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (docSnap) => {
+            await deleteDoc(doc(db, "reserva_vuelo", docSnap.id));
+        });
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "** Se ha borrado el Registro ** ",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        reservform.reset();
     });
-    reservform.reset();
-});
+    
+} catch (error) {
+    Swal.fire({
+        icon: "error",
+        title: " *** Se ha producido un error al momento de borrar los datos *** "
+    });
+}

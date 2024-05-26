@@ -29,38 +29,58 @@ let currentEditId = null;
 //Variable constante
 
 const reservform = document.getElementById("form-reserv");
-reservform.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const codigovef = reservform.codigo.value;
-    const registroguardado = await verificarcod(codigovef);
-    if (registroguardado) {
-        alert(" *** El código de reserva que quiere ingresar ya existe, ingrese otro distinto por favor. *** ");
-        return;
-    }
-
-    await addDoc(collection(db, "reserva_vuelo"), {
-        codigo: reservform.codigo.value,
-        nombre: reservform.nombre.value,
-        origen: reservform.origen.value,
-        destino: reservform.destino.value,
-        fehaSal: reservform.fechaSal.value,
-        fechaRe: reservform.fechaRe.value,
-        viajero: reservform.viajero.value,
-        servicio: reservform.servicio.value,
-        estado: reservform.estado.value,
-        precio: reservform.precio.value
+try {
+    reservform.addEventListener("submit", async (e) => {
+        e.preventDefault();
+    
+        const codigovef = reservform.codigo.value;
+        const registroguardado = await verificarcod(codigovef);
+        if (registroguardado) {
+            Swal.fire({
+                icon: "error",
+                title: " *** El código de reserva que quiere ingresar ya existe, ingrese otro distinto por favor. *** "
+            });
+            return;
+        }
+    
+        await addDoc(collection(db, "reserva_vuelo"), {
+            codigo: reservform.codigo.value,
+            nombre: reservform.nombre.value,
+            origen: reservform.origen.value,
+            destino: reservform.destino.value,
+            fehaSal: reservform.fechaSal.value,
+            fechaRe: reservform.fechaRe.value,
+            viajero: reservform.viajero.value,
+            servicio: reservform.servicio.value,
+            estado: reservform.estado.value,
+            precio: reservform.precio.value
+        });
+        
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "** Su registro a sido ingresado correctamente **",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    
+        //Limpiar campos
+    
+        reservform.reset();
     });
 
-    //Limpiar campos
+    // Validacion de Codigo
 
-    reservform.reset();
-});
-
-// Validacion de Codigo
-
-async function verificarcod(codigovef) {
-    const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigovef));
-    const querySnapshot = await getDocs(q);
-    return !querySnapshot.empty;
+    async function verificarcod(codigovef) {
+        const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigovef));
+        const querySnapshot = await getDocs(q);
+        return !querySnapshot.empty;
+    }
+    
+} catch (error) {
+    Swal.fire({
+        icon: "error",
+        title: " *** Se ha producido un error al momento de ingresar el registro *** "
+    });
+    
 }
