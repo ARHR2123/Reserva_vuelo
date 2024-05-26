@@ -45,9 +45,8 @@
 
     hr {
         background-color: black;
-        border-color: 1px solid blue;
         height: 2px;
-        width: 90%;
+        width: 100%;
     }
 
     .estilo {
@@ -111,6 +110,9 @@
             </div>
         </nav>
     </center>
+    <center>
+        <hr>
+    </center>   
     <h1 style="background-color: rgba(128, 128, 128, 0.589);">
         <br>
         REGISTRAR TU VUELO
@@ -120,8 +122,8 @@
         <hr>
     </center>
 
-    <form id="form-reserv" style="background-color: rgba(128, 128, 128, 0.589);">
-        <div class="containerPrin">
+    <form id="form-reserv" >
+        <div class="containerPrin" style="background-color: rgba(128, 128, 128, 0.589);">
 
             <!--Primera Columna-->
 
@@ -213,22 +215,25 @@
             </div>
         </div>
         <center>
+            <hr>
+        </center>
+        <center style="background-color: rgba(128, 128, 128, 0.589);">
+            <br>
             <button type="submit" class="btn btn-success" id="boton"><b>GUARDAR</b></button>
             <br>
             <br>
             <button type="button" class="btn btn-danger" id="btn-eliminar"><b>ELIMINAR</b></button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-warning" id="btn-modificar"><b>MODIFICAR</b></button>
+            <br><br>
         </center>
-        <br>
-        <br>
         <center>
             <hr>
         </center>
-        <br>
-        <center>
+        <center style="background-color: rgba(128, 128, 128, 0.589);">
+            <br>
             <h1>
-                Registros
+                REGISTROS BASE DE DATOS
             </h1>
             <br>
             <div class="containerP2">
@@ -260,12 +265,9 @@
 
                 </tbody>
             </table>
+            <br>
+            <br>
         </center>
-        <br>
-        <center>
-            <hr>
-        </center>
-        <br>
     </form>
 
     <!-- CDN para alertas -->
@@ -339,7 +341,10 @@
             }
 
             if (!reservaencontrada) {
-                alert("** No existe ninguna reserva con ese Nombre **");
+                Swal.fire({
+                    icon: "warning",
+                    title: "** No existe ninguna reserva con ese Nombre **"
+                });
             }
         });
     </script>
