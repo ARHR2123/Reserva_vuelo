@@ -26,41 +26,31 @@ const cerrar = document.querySelector('#cerrar');
 cerrar.addEventListener('click', e => {
     e.preventDefault();
     auth.signOut().then(() => {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
-            },
-            buttonsStyling: false
-        });
-        swalWithBootstrapButtons.fire({
+        Swal.fire({
             title: "¿Está seguro que desea cerrar su cuenta ?",
             icon: "warning",
             showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
             confirmButtonText: "Sí, Cerrar",
-            cancelButtonText: "No, Cancelar!",
-            reverseButtons: true
+            cancelButtonText: "No, Cancelar!"
         }).then((result) => {
             if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire({
+                Swal.fire({
                     title: "Sesión Cerrada!",
                     icon: "success"
                 });
                 window.location.href = "index.html";
-
-            } else if (
+            }
+            else if (
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                swalWithBootstrapButtons.fire({
+                swal.fire({
                     title: "Cancelado",
                     text: "Puedes seguir reservando los viajes",
                     icon: "error"
                 });
             }
         });
-    })
-        .catch((error) => {
-            const errorCode = error.code;
-            alert('** Error al cerrar sesión **');
-        })
+    });  
 });
