@@ -45,10 +45,22 @@ crear.addEventListener('submit', (e) => {
     // Captura del correo y el email y lo pasa a FireBase 
     createUserWithEmailAndPassword(auth, sesionemail, sesionpassword)
         .then((userCredential) => {
-            alert("** Su Cuenta se a Creado Exitosamente ** ");
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "** Su Cuenta se a Creado Exitosamente ** ",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
             //Verificación del correo
+            
             sendEmailVerification(auth.currentUser).then(() => {
-                alert("** Se ha enviado un correo de verificación **")
+                Swal.fire({
+                    icon: "success",
+                    title: "** Se ha enviado un correo de verificación **",
+                    text: "Ingresa a tu correo electrónico!",
+                });
             });
             //Limpiar el formulario
             crear.reset()
@@ -57,16 +69,31 @@ crear.addEventListener('submit', (e) => {
         .catch((error) => {
             const errorCode = error.code;
             if (errorCode == 'auth/email-already-in-use') {
-                alert('** El CORREO ya existe en esta cuenta **');
+                Swal.fire({
+                    icon: "error",
+                    title: '** El CORREO ya existe en esta cuenta **',
+                    text: "Registre otro correo que no exista! ",
+                });
+
             }
             else if (errorCode == 'auth/invalid-email') {
-                alert('** El Correo no es válido **');
+                Swal.fire({
+                    icon: "error",
+                    title: '** El Correo no es válido **',
+                    text: "Ingresa un correo existente!",
+                });
             }
             else if (errorCode == 'auth/weak-password') {
-                alert('** La contraseña debe tener almenos 6 dígitos **');
+                Swal.fire({
+                    icon: "warning",
+                    title: '** La contraseña debe tener almenos 6 dígitos **'
+                });
             }
             else {
-                alert("** Existen campos vacíos **")
+                Swal.fire({
+                    icon: "warning",
+                    title: "** Existen campos vacíos **"
+                });
             }
         });
 });
