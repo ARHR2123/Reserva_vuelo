@@ -14,9 +14,11 @@ const firebaseConfig = {
     projectId: "reserva-3caaa",
     storageBucket: "reserva-3caaa.appspot.com",
     messagingSenderId: "652924412002",
-    appId: "1:652924412002:web:df0c04cdf836197113f13b",
-    measurementId: "G-NR8K69TGLP"
+    appId: "1:652924412002:web:e209e8afc6d03adb13f13b",
+    measurementId: "G-MRS2H9F1ZN"
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
