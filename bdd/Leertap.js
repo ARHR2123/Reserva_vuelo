@@ -15,7 +15,7 @@ const firebaseConfig = {
     storageBucket: "reserva-3caaa.appspot.com",
     messagingSenderId: "652924412002",
     appId: "1:652924412002:web:df0c04cdf836197113f13b",
-    measurementId: "G-NR8K69TGLP"
+    measurementId: "G-MRS2H9F1ZN"
 };
 
 // Initialize Firebase
