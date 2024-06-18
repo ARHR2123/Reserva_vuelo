@@ -20,7 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const coleccionViajes = db.collection('viajes');
+const coleccionViajes = db.collection('reserva_vuelo');
 
 function eliminarDocumento(id) {
     return coleccionViajes.doc(id).delete();
