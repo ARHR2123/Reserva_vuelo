@@ -17,8 +17,9 @@ const firebaseConfig = {
     appId: "1:783449294180:web:e5f8f5dcc9a7ed6472a671"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const coleccionViajes = db.collection('viajes');
 
 function eliminarDocumento(id) {
