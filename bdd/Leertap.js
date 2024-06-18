@@ -43,8 +43,10 @@ try {
                 <td>${doc.data().servicio}</td>
                 <td>${doc.data().estado}</td>
                 <td>${doc.data().precio}</td>
-                <td>${<button type="button" class="btn btn-danger" id="btn-eliminar"><b>ELIMINAR</b></button>}</td>
-                <td>${<button type="button" class="btn btn-warning" id="btn-modificar"><b>MODIFICAR</b></button>}</td>
+                <td>${<button type="button" class="btn btn-danger" id="btn-eliminar"><b>ELIMINAR</b></button>}
+                    ${<button type="button" class="btn btn-warning" id="btn-modificar"><b>MODIFICAR</b></button>}
+                
+                </td>
             </tr>
             `
         });
