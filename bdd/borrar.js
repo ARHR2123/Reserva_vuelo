@@ -24,7 +24,7 @@ const db = getFirestore(app);
 const reservform = document.getElementById("form-reserv");
 const elibtn = document.getElementById("btn-eliminar");
 try {
-    elibtn.addEventListener("click", async () => {
+    /*elibtn.addEventListener("click", async () => {
         const codigobor = document.getElementById("codigo").value;
         const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigobor));
         const querySnapshot = await getDocs(q);
@@ -39,7 +39,14 @@ try {
             timer: 1500
         });
         reservform.reset();
-    });
+    });*/
+
+    function eliminarVuelo(id) {
+        if (confirm("¿Está seguro de eliminar esta Reserva de Vuelo?")) {
+            elibtn.child(id).remove();
+        }
+        reservform.reset();
+    }
     
 } catch (error) {
     Swal.fire({

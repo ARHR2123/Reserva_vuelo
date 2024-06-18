@@ -43,8 +43,11 @@ try {
                 <td>${doc.data().servicio}</td>
                 <td>${doc.data().estado}</td>
                 <td>${doc.data().precio}</td>
-                <td><button type="button" class="btn btn-danger" id="btn-eliminar"><b>ELIMINAR</b></button>
-                    <button type="button" class="btn btn-warning" id="btn-modificar"><b>MODIFICAR</b></button>
+                <td>
+                    <button onclick="editarUsuario('${doc.data().codigo}', '${doc.data().nombre}', '${doc.data().origen}',
+                    '${doc.data().destino}', '${doc.data().fehaSal}', '${doc.data().viajero}', '${doc.data().servicio}', '${doc.data().estado}',
+                    '${doc.data().precio}')">Editar</button>
+                    <button onclick="eliminarVuelo('${doc.data().codigo}')">Eliminar</button>
                 
                 </td>
             </tr>
