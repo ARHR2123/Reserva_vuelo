@@ -17,13 +17,21 @@ const firebaseConfig = {
     appId: "1:783449294180:web:e5f8f5dcc9a7ed6472a671"
 };
 
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const coleccionViajes = db.collection('viajes');
+
+function eliminarDocumento(id) {
+    return coleccionViajes.doc(id).delete();
+}
+
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+//const app = initializeApp(firebaseConfig);
+//const db = getFirestore(app);
 // Borrar Datos
-const reservform = document.getElementById("form-reserv");
-const elibtn = document.getElementById("btn-eliminar");
-try {
+//const reservform = document.getElementById("form-reserv");
+//const elibtn = document.getElementById("btn-eliminar");
+////try {
     /*elibtn.addEventListener("click", async () => {
         const codigobor = document.getElementById("codigo").value;
         const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigobor));
@@ -40,17 +48,10 @@ try {
         });
         reservform.reset();
     });*/
-
-    function eliminarVuelo(id) {
-        if (confirm("¿Está seguro de eliminar esta Reserva de Vuelo?")) {
-            elibtn.child(id).remove();
-        }
-        reservform.reset();
-    }
     
-} catch (error) {
+/*} catch (error) {
     Swal.fire({
         icon: "error",
         title: " *** Se ha producido un error al momento de borrar los datos *** "
     });
-}
+}*/

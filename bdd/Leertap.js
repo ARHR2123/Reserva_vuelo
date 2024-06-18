@@ -44,20 +44,37 @@ try {
                 <td>${doc.data().estado}</td>
                 <td>${doc.data().precio}</td>
                 <td>
-                    <button onclick="editarUsuario('${doc.data().codigo}', '${doc.data().nombre}', '${doc.data().origen}',
-                    '${doc.data().destino}', '${doc.data().fehaSal}', '${doc.data().viajero}', '${doc.data().servicio}', '${doc.data().estado}',
-                    '${doc.data().precio}')">Editar</button>
-                    <button onclick="/bdd/borrar/eliminarVuelo('${doc.data().codigo}')">Eliminar</button>
-                
+                    <button onclick="editar('${doc.id}')">Modificar</button>
+                    <button onclick="eliminar('${doc.id}')">Eliminar</button>
                 </td>
             </tr>
             `
         });
     });
-    
+
 } catch (error) {
     Swal.fire({
         icon: "error",
         title: " *** Se ha producido un error al momento de visualizar el registro *** "
     });
+}
+
+// Función para eliminar un documento
+function eliminar(id) {
+    if (confirm("¿Estás seguro de eliminar esta Reserva de Vuelo?")) {
+        eliminarDocumento(id)
+            .then(() => {
+                console.log("Documento eliminado correctamente");
+            })
+            .catch((error) => {
+                console.error("Error al eliminar documento: ", error);
+            });
+    }
+}
+
+// Función para modificar un documento
+function editar(id) {
+    // Aquí puedes implementar la lógica para modificar el documento, por ejemplo, mostrando un formulario con los datos actuales para editar.
+    console.log("Editar documento con ID:", id);
+    // Puedes usar modificarDocumento(id, nuevosDatos) para actualizar el documento en Firestore.
 }
