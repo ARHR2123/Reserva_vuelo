@@ -47,7 +47,7 @@ try {
                     <button onclick="editarUsuario('${doc.data().codigo}', '${doc.data().nombre}', '${doc.data().origen}',
                     '${doc.data().destino}', '${doc.data().fehaSal}', '${doc.data().viajero}', '${doc.data().servicio}', '${doc.data().estado}',
                     '${doc.data().precio}')">Editar</button>
-                    <button onclick="eliminarVuelo('${doc.data().codigo}')">Eliminar</button>
+                    <button onclick="/bdd/borrar/eliminarVuelo('${doc.data().codigo}')">Eliminar</button>
                 
                 </td>
             </tr>
