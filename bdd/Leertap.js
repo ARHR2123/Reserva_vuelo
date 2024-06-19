@@ -44,8 +44,8 @@ try {
                 <td>${doc.data().estado}</td>
                 <td>${doc.data().precio}</td>
                 <td>
-                    <button onclick="editar('${doc.id}')">Modificar</button>
-                    <button onclick="eliminar('${doc.id}')">Eliminar</button>
+                    <button class="btn btn-danger" onclick="editar('${doc.id}')">MODIFICAR</button>
+                    <button class="btn btn-warning" onclick="eliminar('${doc.id}')">ELIMINAR</button>
                 </td>
             </tr>
             `
