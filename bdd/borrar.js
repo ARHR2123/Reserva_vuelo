@@ -17,23 +17,23 @@ const firebaseConfig = {
     appId: "1:783449294180:web:e5f8f5dcc9a7ed6472a671"
 };
 
-const app = initializeApp(firebaseConfig);
+/*const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const coleccionViajes = db.collection('viajes');
 
 function eliminarDocumento(id) {
     return coleccionViajes.doc(id).delete();
-}
+}*/
 
 // Initialize Firebase
-//const app = initializeApp(firebaseConfig);
-//const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 // Borrar Datos
-//const reservform = document.getElementById("form-reserv");
-//const elibtn = document.getElementById("btn-eliminar");
-////try {
-    /*elibtn.addEventListener("click", async () => {
+const reservform = document.getElementById("form-reserv");
+const elibtn = document.getElementById("btn-eliminar");
+try {
+    elibtn.addEventListener("click", async () => {
         const codigobor = document.getElementById("codigo").value;
         const q = query(collection(db, "reserva_vuelo"), where("codigo", "==", codigobor));
         const querySnapshot = await getDocs(q);
@@ -48,11 +48,11 @@ function eliminarDocumento(id) {
             timer: 1500
         });
         reservform.reset();
-    });*/
+    });
     
-/*} catch (error) {
+} catch (error) {
     Swal.fire({
         icon: "error",
         title: " *** Se ha producido un error al momento de borrar los datos *** "
     });
-}*/
+}
